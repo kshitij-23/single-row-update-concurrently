@@ -1,5 +1,5 @@
 
-
+--This is for H2
 --CREATE TABLE sequence_table (
 --    id long PRIMARY KEY,
 --    sequence_name varchar(20),
