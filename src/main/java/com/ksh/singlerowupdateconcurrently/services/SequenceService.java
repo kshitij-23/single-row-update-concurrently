@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.time.LocalDateTime;
 
 @Service
 public class SequenceService {
@@ -18,12 +17,10 @@ public class SequenceService {
     public Long getNextSequenceNumber() {
         Sequence sequence = sequenceRepository.getById(1L);
         Long current = sequence.getSequenceCurrent();
-        if(current != null) {
+        if (current != null) {
             current = current + 1;
         }
-        sequence.setSequenceCurrent(current);
-        sequence.setUpdatedTs(LocalDateTime.now());
-        sequenceRepository.save(sequence);
+        sequenceRepository.updateCurrentValue(current, sequence.getId());
         return current;
     }
 
